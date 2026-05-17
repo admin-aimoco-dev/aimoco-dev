@@ -1029,6 +1029,7 @@ input[type="range"]::-moz-range-thumb {
 //   3. Navigate to ?industry=dental — everything swaps automatically
 // ─────────────────────────────────────────────────────────────────────────────
 const VAPI_PUBLIC_API_KEY = '70f1ed62-b100-4455-a8fd-9a9c0f5c09ea'; // REPLACE with your Public key from Vapi Dashboard
+const VAPI_ASSISTANT_DEFAULT = 'ac75716a-1963-4800-9977-2c7bda9df9c0'; // Fallback when an industry has no vapiAssistantId
 
 const INDUSTRIES = {
   general: {
@@ -1036,7 +1037,7 @@ const INDUSTRIES = {
     heroBadge: 'AI-Powered Call Handling',
     heroHeadline: 'Your phone answered.<br><em>Every call.</em> Every time.',
     heroSub: 'An AI receptionist that picks up your business calls, handles enquiries, and books appointments straight into your calendar — 24 hours a day, no staff needed.',
-    vapiDemoUrl: 'https://vapi.ai/demo/PLACEHOLDER_GENERAL', // REPLACE WITH REAL VAPI DEMO LINK
+    vapiAssistantId: 'ac75716a-1963-4800-9977-2c7bda9df9c0', // REPLACE with a general-demo assistant ID when ready
   },
   law: {
     pageTitle: 'AI Receptionist for Law Firms — AIMoCo',
@@ -1069,14 +1070,14 @@ const INDUSTRIES = {
 document.addEventListener('DOMContentLoaded', function () {
   const params = new URLSearchParams(window.location.search);
   const industry = params.get('industry') || 'general';
-  const config = INDUSTRIES[industry] || INDUSTRIES['law'];
+  const config = INDUSTRIES[industry] || INDUSTRIES.general;
 
   document.getElementById('page-title').textContent = config.pageTitle;
   document.getElementById('hero-badge').textContent = config.heroBadge;
   document.getElementById('hero-headline').innerHTML = config.heroHeadline;
   document.getElementById('hero-sub').textContent = config.heroSub;
 
-  initVapiDemo(config.vapiAssistantId);
+  initVapiDemo(config.vapiAssistantId || VAPI_ASSISTANT_DEFAULT);
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1116,6 +1117,7 @@ function mountVapiButton() {
   var btn = document.getElementById('vapi-support-btn');
   var mount = document.getElementById('demo-btn-mount');
   if (btn && mount && btn.parentNode !== mount) mount.appendChild(btn);
+  return !!(btn && mount);
 }
 
 function initVapiDemo(assistantId) {
@@ -1129,7 +1131,9 @@ function initVapiDemo(assistantId) {
       assistant: assistantId,
       config: VAPI_BUTTON_CONFIG,
     });
-    mountVapiButton();
+    if (!mountVapiButton()) {
+      requestAnimationFrame(mountVapiButton);
+    }
   }
 
   if (window.vapiSDK) {
@@ -1139,7 +1143,8 @@ function initVapiDemo(assistantId) {
 
   var existing = document.querySelector('script[data-vapi-sdk]');
   if (existing) {
-    existing.addEventListener('load', startVapi);
+    if (window.vapiSDK) startVapi();
+    else existing.addEventListener('load', startVapi);
     return;
   }
 
