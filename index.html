@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Receptionist — AIMoCo</title>
+<title id="page-title">AI Receptionist for Law Firms — AIMoCo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
@@ -22,7 +22,6 @@
   --text-bright: #D0D8E2;
   --text-heading: #EAE6E0;
   --green: #4ADE80;
-  --green-dim: rgba(74,222,128,0.12);
   --serif: 'Playfair Display', Georgia, serif;
   --sans: 'DM Sans', -apple-system, sans-serif;
 }
@@ -78,9 +77,10 @@ a:hover { color: var(--gold-light); }
   background: var(--gold); color: var(--navy);
   font-family: var(--sans); font-size: 0.78rem; font-weight: 600;
   letter-spacing: 0.05em; text-transform: uppercase;
-  border: none; cursor: pointer; transition: all 0.3s;
+  border: none; cursor: pointer; transition: all 0.3s; text-decoration: none;
+  display: inline-block;
 }
-.topbar-cta:hover { background: var(--gold-light); }
+.topbar-cta:hover { background: var(--gold-light); color: var(--navy); }
 
 /* ── HERO ── */
 .hero {
@@ -159,9 +159,7 @@ a:hover { color: var(--gold-light); }
   border-radius: 16px; padding: 2.5rem 1.2rem 1.5rem;
   min-height: 380px; display: flex; flex-direction: column;
 }
-.phone-status {
-  text-align: center; margin-bottom: 1.5rem;
-}
+.phone-status { text-align: center; margin-bottom: 1.5rem; }
 .phone-status .caller {
   font-family: var(--serif); font-size: 1.1rem;
   color: var(--text-heading); margin-bottom: 0.3rem;
@@ -179,7 +177,6 @@ a:hover { color: var(--gold-light); }
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.4; transform: scale(1.4); }
 }
-
 .chat-bubbles {
   flex: 1; display: flex; flex-direction: column;
   gap: 0.6rem; justify-content: flex-end;
@@ -191,16 +188,12 @@ a:hover { color: var(--gold-light); }
   opacity: 0; animation: bubbleIn 0.4s ease forwards;
 }
 .bubble.ai {
-  background: rgba(200,165,90,0.12);
-  color: var(--text-bright);
-  align-self: flex-start;
-  border-bottom-left-radius: 4px;
+  background: rgba(200,165,90,0.12); color: var(--text-bright);
+  align-self: flex-start; border-bottom-left-radius: 4px;
 }
 .bubble.caller-b {
-  background: var(--navy-surface);
-  color: var(--text);
-  align-self: flex-end;
-  border-bottom-right-radius: 4px;
+  background: var(--navy-surface); color: var(--text);
+  align-self: flex-end; border-bottom-right-radius: 4px;
 }
 .bubble:nth-child(1) { animation-delay: 0.6s; }
 .bubble:nth-child(2) { animation-delay: 1.4s; }
@@ -212,18 +205,16 @@ a:hover { color: var(--gold-light); }
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
 .phone-bottom {
   margin-top: 1rem; padding-top: 0.8rem;
   border-top: 1px solid rgba(200,165,90,0.08);
-  display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  display: flex; align-items: center; justify-content: center;
 }
 .booked-badge {
   font-size: 0.68rem; color: var(--green);
   letter-spacing: 0.08em; text-transform: uppercase;
   font-weight: 500; opacity: 0;
-  animation: bubbleIn 0.4s ease forwards;
-  animation-delay: 4.6s;
+  animation: bubbleIn 0.4s ease forwards; animation-delay: 4.6s;
   display: flex; align-items: center; gap: 0.4rem;
 }
 .booked-badge svg { width: 14px; height: 14px; }
@@ -251,68 +242,6 @@ section { padding: 6rem 0; position: relative; }
   max-width: 580px; font-weight: 300;
 }
 
-/* ── WHAT IT DOES ── */
-.features { background: var(--navy-deep); }
-.features .container { }
-.features-header { text-align: center; margin-bottom: 4rem; }
-.features-header .section-sub { margin: 0 auto; }
-
-.features-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}
-.feature-card {
-  background: var(--navy);
-  border: 1px solid rgba(200,165,90,0.07);
-  padding: 2rem 1.8rem;
-  transition: border-color 0.4s, transform 0.3s;
-}
-.feature-card:hover {
-  border-color: rgba(200,165,90,0.2);
-  transform: translateY(-2px);
-}
-.feature-icon {
-  width: 40px; height: 40px;
-  display: flex; align-items: center; justify-content: center;
-  border: 1px solid rgba(200,165,90,0.2);
-  margin-bottom: 1.2rem; color: var(--gold);
-}
-.feature-icon svg { width: 20px; height: 20px; }
-.feature-card h3 {
-  font-family: var(--serif); font-size: 1.1rem;
-  color: var(--text-heading); margin-bottom: 0.6rem; font-weight: 600;
-}
-.feature-card p {
-  font-size: 0.88rem; color: var(--text); line-height: 1.7; font-weight: 300;
-}
-
-/* ── HOW IT WORKS ── */
-.how-it-works .container {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
-}
-.steps { display: flex; flex-direction: column; gap: 0; }
-.step {
-  display: grid; grid-template-columns: 48px 1fr;
-  gap: 1.2rem; padding: 1.5rem 0;
-  border-bottom: 1px solid rgba(200,165,90,0.06);
-}
-.step:last-child { border-bottom: none; }
-.step-num {
-  width: 40px; height: 40px;
-  display: flex; align-items: center; justify-content: center;
-  border: 1px solid rgba(200,165,90,0.2);
-  font-family: var(--serif); font-size: 1rem;
-  color: var(--gold); font-weight: 600;
-}
-.step h4 {
-  font-size: 1rem; color: var(--text-heading);
-  margin-bottom: 0.3rem; font-weight: 500;
-}
-.step p {
-  font-size: 0.88rem; color: var(--text);
-  line-height: 1.7; font-weight: 300;
-}
-
 /* ── STATS BAR ── */
 .stats-bar {
   background: var(--navy-mid);
@@ -326,126 +255,265 @@ section { padding: 6rem 0; position: relative; }
 }
 .stat-num {
   font-family: var(--serif); font-size: 2.2rem;
-  color: var(--gold); font-weight: 700; line-height: 1;
-  margin-bottom: 0.4rem;
+  color: var(--gold); font-weight: 700; line-height: 1; margin-bottom: 0.4rem;
 }
-.stat-label {
-  font-size: 0.78rem; color: var(--text);
-  letter-spacing: 0.04em; font-weight: 400;
+.stat-label { font-size: 0.78rem; color: var(--text); letter-spacing: 0.04em; }
+
+/* ── SCROLLING TICKER ── */
+.ticker-wrap {
+  background: var(--navy-deep);
+  border-top: 1px solid rgba(200,165,90,0.12);
+  border-bottom: 1px solid rgba(200,165,90,0.12);
+  overflow: hidden; padding: 0.9rem 0; white-space: nowrap;
 }
+.ticker-inner {
+  display: inline-block;
+  animation: ticker 45s linear infinite;
+}
+.ticker-inner:hover { animation-play-state: paused; }
+.ticker-item {
+  display: inline-block;
+  font-size: 0.7rem; letter-spacing: 0.13em;
+  text-transform: uppercase; font-weight: 500;
+  color: var(--gold); opacity: 0.75; padding: 0 1.6rem;
+}
+.ticker-dot {
+  display: inline-block; color: rgba(200,165,90,0.3);
+  font-size: 0.45rem; vertical-align: middle;
+}
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ── DEMO SECTION ── */
+.demo-section { background: var(--navy); padding: 5rem 0; text-align: center; }
+.demo-section .container { max-width: 700px; }
+.demo-btn-wrap { margin: 2.5rem 0 1.8rem; }
+.demo-btn {
+  display: inline-flex; align-items: center; gap: 0.75rem;
+  padding: 1rem 2.5rem; background: var(--gold); color: var(--navy);
+  font-family: var(--sans); font-size: 0.9rem; font-weight: 600;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  border: none; cursor: pointer; transition: all 0.3s; text-decoration: none;
+}
+.demo-btn:hover { background: var(--gold-light); color: var(--navy); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(200,165,90,0.2); }
+.demo-btn svg { width: 20px; height: 20px; }
+.demo-live-dot {
+  width: 9px; height: 9px; background: var(--navy);
+  border-radius: 50%; animation: pulse 1.5s ease infinite; flex-shrink: 0;
+}
+.demo-disclaimer {
+  font-size: 0.82rem; color: var(--text); line-height: 1.75;
+  font-weight: 300; max-width: 560px; margin: 0 auto;
+  border-top: 1px solid rgba(200,165,90,0.08); padding-top: 1.5rem;
+}
+
+/* ── FEATURES ── */
+.features { background: var(--navy-deep); }
+.features-header { text-align: center; margin-bottom: 4rem; }
+.features-header .section-sub { margin: 0 auto; }
+.features-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+}
+.feature-card {
+  background: var(--navy); border: 1px solid rgba(200,165,90,0.07);
+  padding: 2rem 1.8rem; transition: border-color 0.4s, transform 0.3s;
+}
+.feature-card:hover { border-color: rgba(200,165,90,0.2); transform: translateY(-2px); }
+.feature-icon {
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(200,165,90,0.2); margin-bottom: 1.2rem; color: var(--gold);
+}
+.feature-icon svg { width: 20px; height: 20px; }
+.feature-card h3 {
+  font-family: var(--serif); font-size: 1.1rem;
+  color: var(--text-heading); margin-bottom: 0.6rem; font-weight: 600;
+}
+.feature-card p { font-size: 0.88rem; color: var(--text); line-height: 1.7; font-weight: 300; }
+
+/* ── ROI CALCULATOR ── */
+.roi-section { background: var(--navy-mid); padding: 6rem 0; }
+.roi-section .container { max-width: 800px; }
+.roi-header { margin-bottom: 3rem; }
+.roi-sliders { display: flex; flex-direction: column; gap: 2.2rem; margin-bottom: 3rem; }
+.slider-group label {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: 0.85rem; color: var(--text-bright); font-weight: 400;
+  margin-bottom: 0.8rem;
+}
+.slider-group label span {
+  font-family: var(--serif); font-size: 1.1rem; color: var(--gold); font-weight: 600;
+}
+input[type="range"] {
+  -webkit-appearance: none; width: 100%; height: 3px;
+  background: rgba(200,165,90,0.15); border-radius: 2px; outline: none; cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 20px; height: 20px;
+  background: var(--gold); border-radius: 50%;
+  box-shadow: 0 0 10px rgba(200,165,90,0.4);
+  cursor: pointer; transition: transform 0.2s;
+}
+input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+input[type="range"]::-moz-range-thumb {
+  width: 20px; height: 20px; background: var(--gold);
+  border-radius: 50%; border: none;
+  box-shadow: 0 0 10px rgba(200,165,90,0.4); cursor: pointer;
+}
+.roi-output {
+  text-align: center; padding: 2.8rem;
+  background: var(--navy-deep); border: 1px solid rgba(200,165,90,0.1);
+}
+.roi-label {
+  font-size: 0.75rem; color: var(--text); letter-spacing: 0.1em;
+  text-transform: uppercase; margin-bottom: 0.8rem;
+}
+.roi-number {
+  font-family: var(--serif); font-size: clamp(3rem, 7vw, 5rem);
+  color: var(--gold); font-weight: 700; line-height: 1; margin-bottom: 1rem;
+}
+.roi-note {
+  font-size: 0.88rem; color: var(--text); font-weight: 300;
+  line-height: 1.65; max-width: 440px; margin: 0 auto;
+}
+
+/* ── HOW IT WORKS ── */
+.how-it-works .container {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
+}
+.steps { display: flex; flex-direction: column; }
+.step {
+  display: grid; grid-template-columns: 48px 1fr;
+  gap: 1.2rem; padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(200,165,90,0.06);
+}
+.step:last-child { border-bottom: none; }
+.step-num {
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(200,165,90,0.2);
+  font-family: var(--serif); font-size: 1rem; color: var(--gold); font-weight: 600;
+}
+.step h4 { font-size: 1rem; color: var(--text-heading); margin-bottom: 0.3rem; font-weight: 500; }
+.step p { font-size: 0.88rem; color: var(--text); line-height: 1.7; font-weight: 300; }
+
+/* ── PRICING ── */
+.pricing-section { background: var(--navy-deep); padding: 6rem 0; }
+.pricing-setup {
+  background: var(--navy); border: 1px solid rgba(200,165,90,0.07);
+  padding: 1.8rem 2rem; margin-bottom: 1.8rem;
+}
+.pricing-setup p { font-size: 0.9rem; color: var(--text); line-height: 1.75; font-weight: 300; }
+.pricing-setup strong { color: var(--text-bright); font-weight: 500; }
+.pricing-cards {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 2rem;
+}
+.pricing-card {
+  background: var(--navy); border: 1px solid rgba(200,165,90,0.07);
+  padding: 2rem 1.8rem; transition: border-color 0.3s;
+}
+.pricing-card:hover { border-color: rgba(200,165,90,0.2); }
+.pricing-card-label {
+  font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--gold); font-weight: 500; margin-bottom: 0.8rem;
+}
+.pricing-card h3 {
+  font-family: var(--serif); font-size: 1.25rem;
+  color: var(--text-heading); font-weight: 600; margin-bottom: 0.6rem;
+}
+.pricing-card p { font-size: 0.88rem; color: var(--text); line-height: 1.7; font-weight: 300; }
+.pricing-nudge {
+  text-align: center; font-size: 0.9rem; color: var(--text); font-weight: 300;
+}
+.pricing-nudge a { color: var(--gold); }
 
 /* ── CTA / CONTACT ── */
-.cta-section { background: var(--navy-deep); }
+.cta-section { background: var(--navy); }
 .cta-section .container {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 4rem; align-items: start;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
 }
-.cta-left { }
 .cta-left .section-title { margin-bottom: 1.5rem; }
-
 .cta-options { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
 .cta-option {
   display: flex; align-items: center; gap: 1rem;
-  padding: 1rem 1.3rem;
-  background: var(--navy);
+  padding: 1rem 1.3rem; background: var(--navy-mid);
   border: 1px solid rgba(200,165,90,0.08);
   cursor: pointer; transition: all 0.3s; text-decoration: none;
 }
-.cta-option:hover {
-  border-color: rgba(200,165,90,0.25);
-  background: var(--navy-mid);
-}
+.cta-option:hover { border-color: rgba(200,165,90,0.25); background: var(--navy-surface); }
 .cta-option-icon {
   width: 36px; height: 36px; flex-shrink: 0;
   display: flex; align-items: center; justify-content: center;
   background: var(--gold-glow); color: var(--gold);
 }
 .cta-option-icon svg { width: 18px; height: 18px; }
-.cta-option-text h4 {
-  font-size: 0.9rem; color: var(--text-heading);
-  font-weight: 500; margin-bottom: 0.15rem;
-}
-.cta-option-text p {
-  font-size: 0.78rem; color: var(--text); font-weight: 300;
-}
+.cta-option-text h4 { font-size: 0.9rem; color: var(--text-heading); font-weight: 500; margin-bottom: 0.15rem; }
+.cta-option-text p { font-size: 0.78rem; color: var(--text); font-weight: 300; }
 
-/* CONTACT FORM */
 .contact-form {
-  background: var(--navy);
-  border: 1px solid rgba(200,165,90,0.08);
-  padding: 2.5rem;
+  background: var(--navy-mid); border: 1px solid rgba(200,165,90,0.08); padding: 2.5rem;
 }
 .form-title {
   font-family: var(--serif); font-size: 1.3rem;
   color: var(--text-heading); margin-bottom: 0.4rem; font-weight: 600;
 }
-.form-sub {
-  font-size: 0.85rem; color: var(--text); margin-bottom: 2rem; font-weight: 300;
-}
+.form-sub { font-size: 0.85rem; color: var(--text); margin-bottom: 2rem; font-weight: 300; }
 .form-group { margin-bottom: 1.2rem; }
 .form-group label {
-  display: block; font-size: 0.72rem;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--text); margin-bottom: 0.4rem; font-weight: 500;
+  display: block; font-size: 0.72rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--text); margin-bottom: 0.4rem; font-weight: 500;
 }
-.form-group input,
-.form-group textarea {
+.form-group input, .form-group textarea {
   width: 100%; padding: 0.75rem 1rem;
-  background: var(--navy-deep);
-  border: 1px solid rgba(200,165,90,0.1);
-  color: var(--text-bright); font-family: var(--sans);
-  font-size: 0.9rem; outline: none;
-  transition: border-color 0.3s;
+  background: var(--navy-deep); border: 1px solid rgba(200,165,90,0.1);
+  color: var(--text-bright); font-family: var(--sans); font-size: 0.9rem;
+  outline: none; transition: border-color 0.3s;
 }
-.form-group input:focus,
-.form-group textarea:focus {
-  border-color: rgba(200,165,90,0.35);
-}
+.form-group input:focus, .form-group textarea:focus { border-color: rgba(200,165,90,0.35); }
 .form-group textarea { resize: vertical; min-height: 90px; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .form-submit {
-  width: 100%; padding: 0.85rem;
-  background: var(--gold); color: var(--navy);
-  font-family: var(--sans); font-size: 0.82rem;
-  font-weight: 600; letter-spacing: 0.05em;
-  text-transform: uppercase; border: none;
+  width: 100%; padding: 0.85rem; background: var(--gold); color: var(--navy);
+  font-family: var(--sans); font-size: 0.82rem; font-weight: 600;
+  letter-spacing: 0.05em; text-transform: uppercase; border: none;
   cursor: pointer; transition: all 0.3s; margin-top: 0.5rem;
 }
 .form-submit:hover { background: var(--gold-light); }
 
 /* ── SAVE FOR LATER ── */
 .save-section {
-  text-align: center;
-  padding: 3.5rem 0;
+  text-align: center; padding: 3.5rem 0 2rem;
   border-top: 1px solid rgba(200,165,90,0.06);
 }
-.save-section p {
-  font-size: 0.9rem; color: var(--text); margin-bottom: 1.2rem;
-  font-weight: 300;
-}
+.save-section p { font-size: 0.9rem; color: var(--text); margin-bottom: 1.2rem; font-weight: 300; }
 .save-buttons { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
 .save-btn {
   display: inline-flex; align-items: center; gap: 0.45rem;
-  padding: 0.6rem 1.3rem;
-  background: transparent;
-  border: 1px solid rgba(200,165,90,0.15);
-  color: var(--text); font-family: var(--sans);
-  font-size: 0.76rem; font-weight: 400;
-  letter-spacing: 0.04em; cursor: pointer;
-  transition: all 0.3s; text-decoration: none;
+  padding: 0.6rem 1.3rem; background: transparent;
+  border: 1px solid rgba(200,165,90,0.15); color: var(--text);
+  font-family: var(--sans); font-size: 0.76rem; font-weight: 400;
+  letter-spacing: 0.04em; cursor: pointer; transition: all 0.3s; text-decoration: none;
 }
 .save-btn:hover { border-color: var(--gold); color: var(--gold); }
 .save-btn svg { width: 14px; height: 14px; }
 
+/* ── TRUST LINE ── */
+.trust-line {
+  text-align: center; padding: 1.5rem 0;
+  border-top: 1px solid rgba(200,165,90,0.05);
+}
+.trust-line p {
+  font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(200,165,90,0.5); font-weight: 400;
+}
+
 /* ── FOOTER ── */
 .footer {
-  padding: 2.5rem 0;
-  border-top: 1px solid rgba(200,165,90,0.06);
-  text-align: center;
+  padding: 2.5rem 0; border-top: 1px solid rgba(200,165,90,0.06); text-align: center;
 }
-.footer p {
-  font-size: 0.78rem; color: var(--text); font-weight: 300;
-}
+.footer p { font-size: 0.78rem; color: var(--text); font-weight: 300; }
 .footer a { color: var(--gold); }
 
 /* ── RESPONSIVE ── */
@@ -458,6 +526,7 @@ section { padding: 6rem 0; position: relative; }
   .how-it-works .container { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .cta-section .container { grid-template-columns: 1fr; }
+  .pricing-cards { grid-template-columns: 1fr; }
   .topbar-link { display: none; }
 }
 @media (max-width: 600px) {
@@ -484,17 +553,17 @@ section { padding: 6rem 0; position: relative; }
 <section class="hero">
   <div class="container">
     <div class="hero-content">
-      <div class="hero-badge">AI-Powered Call Handling</div>
-      <h1>Your phone answered.<br><em>Every call.</em><br>Every time.</h1>
-      <p class="hero-sub">An AI receptionist that picks up your business calls, handles enquiries, and books appointments straight into your calendar — 24 hours a day, no staff needed.</p>
+      <div class="hero-badge" id="hero-badge">AI Receptionist for Law Firms</div>
+      <h1 id="hero-headline"><em>Never miss</em> a client call again.</h1>
+      <p class="hero-sub" id="hero-sub">Every missed call from a prospective client is revenue walking out the door. Our AI Receptionist answers every call, handles client intake, books consultations directly into your calendar, and keeps your practice accessible around the clock — with no additional staff.</p>
       <div class="hero-actions">
         <a href="https://cal.eu/noah-pranskus-calander/15-min-introduction-call-aimoco-consulting-house" target="_blank" class="btn-gold">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
           Book a Call
         </a>
-        <a href="#contact" class="btn-ghost">
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          Get in Touch
+        <a href="#demo" class="btn-ghost">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Hear It Live
         </a>
       </div>
     </div>
@@ -512,15 +581,15 @@ section { padding: 6rem 0; position: relative; }
           </div>
           <div class="chat-bubbles">
             <div class="bubble ai">Good afternoon, thank you for calling. How can I help you today?</div>
-            <div class="bubble caller-b">Hi, I'd like to book an appointment for Thursday.</div>
-            <div class="bubble ai">Of course. I have 10:00 AM and 2:30 PM available. Which works best?</div>
-            <div class="bubble caller-b">2:30 works.</div>
-            <div class="bubble ai">Done — you're booked for Thursday at 2:30 PM. You'll receive a confirmation shortly.</div>
+            <div class="bubble caller-b">Hi, I need to speak to a solicitor about a property dispute.</div>
+            <div class="bubble ai">Of course. I can book you a free initial consultation — Thursday at 10 AM or Friday at 3 PM. Which suits you?</div>
+            <div class="bubble caller-b">Thursday at 10.</div>
+            <div class="bubble ai">You're booked for Thursday at 10 AM. A confirmation email with preparation details is on its way.</div>
           </div>
           <div class="phone-bottom">
             <div class="booked-badge">
               <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-              Appointment Booked
+              Consultation Booked
             </div>
           </div>
         </div>
@@ -549,11 +618,65 @@ section { padding: 6rem 0; position: relative; }
       </div>
       <div>
         <div class="stat-num">0</div>
-        <div class="stat-label">Missed appointments</div>
+        <div class="stat-label">Missed consultations</div>
       </div>
     </div>
   </div>
 </div>
+
+<!-- SCROLLING TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span class="ticker-item">No Missed Calls</span><span class="ticker-dot">&middot;</span>
+    <span class="ticker-item">24/7 Availability</span><span class="ticker-dot">&middot;</span>
+    <span class="ticker-item">Instant Booking</span><span class="ticker-dot">&middot;</span>
+    <span class="ticker-item">SMS &amp; Email Confirmations</span><span class="ticker-dot">&middot;</span>
+    <span class="ticker-item">Calendar Sync</span><span class="ticker-dot">&middot;</span>
+    <span class="ticker-item">GDPR Compliant</span><span class="ticker-dot">&middot;</span>
+    <span class="ticker-item">HIPAA Compliant</span><span class="ticker-dot">&middot;</span>
+    <span class="ticker-item">Encrypted Calls</span><span class="ticker-dot">&middot;</span>
+    <span class="ticker-item">Custom AI Voice</span><span class="ticker-dot">&middot;</span>
+    <span class="ticker-item">29+ Languages</span><span class="ticker-dot">&middot;</span>
+    <span class="ticker-item">No Hold Music</span><span class="ticker-dot">&middot;</span>
+    <span class="ticker-item">Seamless Call Routing</span><span class="ticker-dot">&middot;</span>
+    <span class="ticker-item">Real-Time Availability</span><span class="ticker-dot">&middot;</span>
+    <span class="ticker-item">Fully Customisable</span><span class="ticker-dot">&middot;</span>
+    <span class="ticker-item">No Missed Calls</span><span class="ticker-dot">&middot;</span>
+    <span class="ticker-item">24/7 Availability</span><span class="ticker-dot">&middot;</span>
+    <span class="ticker-item">Instant Booking</span><span class="ticker-dot">&middot;</span>
+    <span class="ticker-item">SMS &amp; Email Confirmations</span><span class="ticker-dot">&middot;</span>
+    <span class="ticker-item">Calendar Sync</span><span class="ticker-dot">&middot;</span>
+    <span class="ticker-item">GDPR Compliant</span><span class="ticker-dot">&middot;</span>
+    <span class="ticker-item">HIPAA Compliant</span><span class="ticker-dot">&middot;</span>
+    <span class="ticker-item">Encrypted Calls</span><span class="ticker-dot">&middot;</span>
+    <span class="ticker-item">Custom AI Voice</span><span class="ticker-dot">&middot;</span>
+    <span class="ticker-item">29+ Languages</span><span class="ticker-dot">&middot;</span>
+    <span class="ticker-item">No Hold Music</span><span class="ticker-dot">&middot;</span>
+    <span class="ticker-item">Seamless Call Routing</span><span class="ticker-dot">&middot;</span>
+    <span class="ticker-item">Real-Time Availability</span><span class="ticker-dot">&middot;</span>
+    <span class="ticker-item">Fully Customisable</span><span class="ticker-dot">&middot;</span>
+  </div>
+</div>
+
+<!-- DEMO SECTION -->
+<section class="demo-section" id="demo">
+  <div class="container">
+    <div class="section-badge">Live Demo</div>
+    <h2 class="section-title">Hear how it sounds — live</h2>
+    <p class="section-sub" style="margin: 0 auto;">Click below to speak with our AI Receptionist demo. Go ahead — ask it to book you in, ask about the firm's services, or just see how naturally it handles a real call.</p>
+    <div class="demo-btn-wrap">
+      <!-- URL is set from the INDUSTRIES config in JS below. REPLACE vapiDemoUrl with real VAPI link when ready. -->
+      <a href="#" id="demo-link" target="_blank" rel="noopener" class="demo-btn">
+        <span class="demo-live-dot"></span>
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Call the Demo
+      </a>
+    </div>
+    <p class="demo-disclaimer">This is a demo environment — the voice, firm name, and responses are generic placeholders. Every AI Receptionist we build is fully customised to your firm: your name, your practice areas, your tone of voice, your availability, and your booking process.</p>
+  </div>
+</section>
+
+<div class="section-line"></div>
 
 <!-- FEATURES -->
 <section class="features" id="features">
@@ -561,7 +684,7 @@ section { padding: 6rem 0; position: relative; }
     <div class="features-header">
       <div class="section-badge">What It Does</div>
       <h2 class="section-title">A receptionist that never clocks out</h2>
-      <p class="section-sub">Your AI receptionist handles the full cycle — from answering the call to confirming the booking in your calendar.</p>
+      <p class="section-sub">From the first ring to a confirmed consultation — your AI Receptionist handles the full client intake cycle, 24 hours a day.</p>
     </div>
     <div class="features-grid">
       <div class="feature-card">
@@ -569,43 +692,75 @@ section { padding: 6rem 0; position: relative; }
           <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
         </div>
         <h3>Answers Every Call</h3>
-        <p>Picks up instantly — no hold music, no voicemail. Your callers speak to a natural-sounding AI that understands their request.</p>
+        <p>Picks up instantly — no hold music, no voicemail. Every client intake call is handled professionally from the first ring, even at 11 PM on a Friday.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">
           <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         </div>
-        <h3>Books Into Your Calendar</h3>
-        <p>Checks your real-time availability and books appointments directly — Google Calendar, Outlook, or any system you use.</p>
+        <h3>Books Consultations</h3>
+        <p>Checks your real-time availability and books initial consultations directly — Google Calendar, Outlook, or your practice management system.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">
           <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
         </div>
         <h3>Handles Common Questions</h3>
-        <p>Trained on your business — opening hours, services, pricing, directions. Answers confidently without needing a human.</p>
+        <p>Trained on your firm — practice areas, initial steps, general fee structures, office hours. Answers confidently so your team don't have to field routine calls.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">
           <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
         </div>
         <h3>Routes Complex Calls</h3>
-        <p>Knows when a caller needs a real person. Transfers to your team with full context — nothing lost in translation.</p>
+        <p>Knows when a caller needs a solicitor directly. Transfers with full context — the matter type, caller details, and what's been said — so nothing is lost in handover.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">
           <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </div>
         <h3>Sends Confirmations</h3>
-        <p>Automatically sends your caller a confirmation via SMS or email with the appointment details. No manual follow-up.</p>
+        <p>Automatically sends the caller a confirmation via SMS or email with their consultation time and any preparation notes your firm specifies.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">
           <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
         <h3>Works Around the Clock</h3>
-        <p>Nights, weekends, holidays. Every call answered, every appointment captured — even when your office is closed.</p>
+        <p>Nights, weekends, bank holidays. Prospective clients who call after hours are captured and booked — not lost to a competitor who happened to pick up.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-line"></div>
+
+<!-- ROI CALCULATOR -->
+<section class="roi-section">
+  <div class="container">
+    <div class="roi-header">
+      <div class="section-badge">Revenue Impact</div>
+      <h2 class="section-title">What are missed calls costing your firm?</h2>
+      <p class="section-sub">Adjust the sliders to estimate the revenue at risk. Most firms don't track missed calls — the real number tends to be higher than expected.</p>
+    </div>
+    <div class="roi-sliders">
+      <div class="slider-group">
+        <label>Missed calls per month <span id="val-calls">20</span></label>
+        <input type="range" id="slider-calls" min="0" max="100" value="20" step="1" oninput="updateROI()">
+      </div>
+      <div class="slider-group">
+        <label>Average client value <span id="val-revenue">€1,500</span></label>
+        <input type="range" id="slider-revenue" min="0" max="10000" value="1500" step="100" oninput="updateROI()">
+      </div>
+      <div class="slider-group">
+        <label>Booking conversion rate <span id="val-rate">40%</span></label>
+        <input type="range" id="slider-rate" min="0" max="100" value="40" step="5" oninput="updateROI()">
+      </div>
+    </div>
+    <div class="roi-output">
+      <div class="roi-label">Estimated monthly revenue at risk</div>
+      <div class="roi-number" id="roi-result">€12,000</div>
+      <div class="roi-note">Even recovering 30% of these calls pays for the system many times over. Most firms recover the cost within the first month.</div>
     </div>
   </div>
 </section>
@@ -618,34 +773,34 @@ section { padding: 6rem 0; position: relative; }
     <div>
       <div class="section-badge">How It Works</div>
       <h2 class="section-title">Live in days,<br>not months</h2>
-      <p class="section-sub" style="margin-bottom: 2.5rem;">We set the whole thing up for you. No technical work on your end — just a conversation about how your business runs.</p>
+      <p class="section-sub" style="margin-bottom: 2.5rem;">We handle the full setup. No technical work from your team — just one conversation about how your practice operates.</p>
       <div class="steps">
         <div class="step">
           <div class="step-num">1</div>
           <div>
             <h4>Discovery call</h4>
-            <p>We learn how your business handles calls, what questions callers ask, and how your calendar works.</p>
+            <p>We learn how your firm handles calls, which practice areas to cover, your consultation booking process, and what callers typically ask.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">2</div>
           <div>
-            <h4>We build your AI receptionist</h4>
-            <p>Custom-trained on your services, hours, pricing, and booking rules. Connected to your calendar.</p>
+            <h4>We build your AI Receptionist</h4>
+            <p>Custom-trained on your firm — practice areas, intake process, booking rules, FAQs. Connected to your calendar and voiced to represent your firm professionally.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">3</div>
           <div>
             <h4>Test &amp; refine</h4>
-            <p>You call it, your team calls it, we adjust. Tone, responses, routing — until it sounds like your front desk.</p>
+            <p>You call it, your team calls it, we adjust. Tone, responses, routing — until it handles calls the way your front desk would.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">4</div>
           <div>
             <h4>Go live</h4>
-            <p>Forward your calls to the AI number. From that moment, every call is answered and every appointment booked.</p>
+            <p>Forward your calls to the AI number. From that moment, every client call is answered and every consultation is captured.</p>
           </div>
         </div>
       </div>
@@ -656,7 +811,7 @@ section { padding: 6rem 0; position: relative; }
         <div style="display:flex;flex-direction:column;gap:1.1rem;">
           <div style="display:flex;align-items:flex-start;gap:0.8rem;">
             <svg width="18" height="18" fill="none" stroke="var(--gold)" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
-            <span style="font-size:0.88rem;color:var(--text-bright);font-weight:400;">Custom AI voice, trained on your business</span>
+            <span style="font-size:0.88rem;color:var(--text-bright);font-weight:400;">Custom AI voice, trained on your firm</span>
           </div>
           <div style="display:flex;align-items:flex-start;gap:0.8rem;">
             <svg width="18" height="18" fill="none" stroke="var(--gold)" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
@@ -668,7 +823,7 @@ section { padding: 6rem 0; position: relative; }
           </div>
           <div style="display:flex;align-items:flex-start;gap:0.8rem;">
             <svg width="18" height="18" fill="none" stroke="var(--gold)" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
-            <span style="font-size:0.88rem;color:var(--text-bright);font-weight:400;">Smart call routing for complex enquiries</span>
+            <span style="font-size:0.88rem;color:var(--text-bright);font-weight:400;">Smart call routing to the right solicitor</span>
           </div>
           <div style="display:flex;align-items:flex-start;gap:0.8rem;">
             <svg width="18" height="18" fill="none" stroke="var(--gold)" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
@@ -686,13 +841,45 @@ section { padding: 6rem 0; position: relative; }
 
 <div class="section-line"></div>
 
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="container">
+    <div class="section-badge">Pricing</div>
+    <h2 class="section-title">Simple, transparent pricing</h2>
+    <p class="section-sub" style="margin-bottom: 2.5rem;">No opaque contracts, no hidden costs. Two ways to run it — pick what fits your firm.</p>
+
+    <div class="pricing-setup">
+      <p><strong>One-time setup fee.</strong> Covers the full build: custom AI voice, calendar integration, call routing logic, and training on your firm's practice areas, FAQs, and client intake process. Quoted after your discovery call based on complexity — most firms are live within a week of that conversation.</p>
+    </div>
+
+    <div class="pricing-cards">
+      <div class="pricing-card">
+        <div class="pricing-card-label">Option A</div>
+        <h3>Pay-as-you-go</h3>
+        <p>Pay per call handled. No monthly commitment, no minimum volume. Scale up or down as call volume changes. A good fit for smaller practices or firms wanting to trial the system before committing.</p>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-card-label">Option B</div>
+        <h3>Monthly subscription</h3>
+        <p>Fixed monthly fee, unlimited calls handled. Predictable overhead, complete coverage. Recommended for firms with consistent or high call volumes — typically more cost-effective from around 80+ calls per month.</p>
+      </div>
+    </div>
+
+    <div class="pricing-nudge">
+      Not sure which model fits your firm? <a href="https://cal.eu/noah-pranskus-calander/15-min-introduction-call-aimoco-consulting-house" target="_blank">We'll work it out together on the discovery call.</a>
+    </div>
+  </div>
+</section>
+
+<div class="section-line"></div>
+
 <!-- CTA + FORM -->
 <section class="cta-section" id="contact">
   <div class="container">
     <div class="cta-left">
       <div class="section-badge">Get Started</div>
       <h2 class="section-title">Ready to stop<br>missing calls?</h2>
-      <p class="section-sub">Book a 15-minute call to see how the AI Receptionist works for your business. Or drop us a message — we'll get back to you within a day.</p>
+      <p class="section-sub">Book a 15-minute call to see how the AI Receptionist works for your firm. Or drop us a message — we'll get back to you within one working day.</p>
 
       <div class="cta-options">
         <a href="https://cal.eu/noah-pranskus-calander/15-min-introduction-call-aimoco-consulting-house" target="_blank" class="cta-option">
@@ -744,15 +931,15 @@ section { padding: 6rem 0; position: relative; }
           </div>
           <div class="form-group">
             <label>Email</label>
-            <input type="email" name="email" required placeholder="john@company.com">
+            <input type="email" name="email" required placeholder="john@smithsolicitors.com">
           </div>
           <div class="form-group">
-            <label>Company</label>
-            <input type="text" name="company" placeholder="Your business name">
+            <label>Firm Name</label>
+            <input type="text" name="company" placeholder="Your firm's name">
           </div>
           <div class="form-group">
             <label>Message</label>
-            <textarea name="message" placeholder="Tell us about your business and how many calls you handle..."></textarea>
+            <textarea name="message" placeholder="Tell us about your firm and roughly how many calls you handle each month..."></textarea>
           </div>
           <button type="submit" class="form-submit">Send Message</button>
         </form>
@@ -765,11 +952,11 @@ section { padding: 6rem 0; position: relative; }
 <div class="save-section">
   <p>Not ready yet? Save this page and come back when you are.</p>
   <div class="save-buttons">
-    <a href="#" class="save-btn" id="gcal-btn" onclick="addToGoogleCal(event)">
+    <a href="#" class="save-btn" onclick="addToGoogleCal(event)">
       <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
       Add to Google Calendar
     </a>
-    <a href="#" class="save-btn" id="ical-btn" onclick="downloadICS(event)">
+    <a href="#" class="save-btn" onclick="downloadICS(event)">
       <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
       Apple Calendar
     </a>
@@ -780,6 +967,11 @@ section { padding: 6rem 0; position: relative; }
   </div>
 </div>
 
+<!-- TRUST LINE -->
+<div class="trust-line">
+  <p>GDPR Compliant &middot; HIPAA Compliant &middot; Encrypted Calls &middot; Your Data Stays Yours</p>
+</div>
+
 <!-- FOOTER -->
 <footer class="footer">
   <div class="container">
@@ -788,31 +980,105 @@ section { padding: 6rem 0; position: relative; }
 </footer>
 
 <script>
-window.addEventListener('scroll', () => {
+// ─────────────────────────────────────────────────────────────────────────────
+// INDUSTRY CONFIG
+// To add a new industry (e.g. dental, realestate):
+//   1. Add a new key to INDUSTRIES with all required fields
+//   2. Set vapiDemoUrl to the correct VAPI demo link for that industry
+//   3. Navigate to ?industry=dental — everything swaps automatically
+// ─────────────────────────────────────────────────────────────────────────────
+const INDUSTRIES = {
+  law: {
+    pageTitle: 'AI Receptionist for Law Firms — AIMoCo',
+    heroBadge: 'AI Receptionist for Law Firms',
+    heroHeadline: '<em>Never miss</em> a client call again.',
+    heroSub: 'Every missed call from a prospective client is revenue walking out the door. Our AI Receptionist answers every call, handles client intake, books consultations directly into your calendar, and keeps your practice accessible around the clock — with no additional staff.',
+    vapiDemoUrl: 'https://vapi.ai/demo/PLACEHOLDER_LAW', // REPLACE WITH REAL VAPI DEMO LINK FOR LAW
+  },
+
+  // ── Add future industries below — zero logic changes needed ──────────────
+  // dental: {
+  //   pageTitle: 'AI Receptionist for Dental Practices — AIMoCo',
+  //   heroBadge: 'AI Receptionist for Dental Practices',
+  //   heroHeadline: '<em>Every patient call</em> answered.',
+  //   heroSub: '...',
+  //   vapiDemoUrl: 'https://vapi.ai/demo/PLACEHOLDER_DENTAL', // REPLACE
+  // },
+  // realestate: {
+  //   pageTitle: 'AI Receptionist for Estate Agents — AIMoCo',
+  //   heroBadge: 'AI Receptionist for Estate Agents',
+  //   heroHeadline: 'Never lose a <em>viewing request</em> again.',
+  //   heroSub: '...',
+  //   vapiDemoUrl: 'https://vapi.ai/demo/PLACEHOLDER_REALESTATE', // REPLACE
+  // },
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// INDUSTRY INIT
+// ─────────────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function () {
+  const params = new URLSearchParams(window.location.search);
+  const industry = params.get('industry') || 'law';
+  const config = INDUSTRIES[industry] || INDUSTRIES['law'];
+
+  document.getElementById('page-title').textContent = config.pageTitle;
+  document.getElementById('hero-badge').textContent = config.heroBadge;
+  document.getElementById('hero-headline').innerHTML = config.heroHeadline;
+  document.getElementById('hero-sub').textContent = config.heroSub;
+
+  const demoLink = document.getElementById('demo-link');
+  if (demoLink) demoLink.href = config.vapiDemoUrl;
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ROI CALCULATOR
+// ─────────────────────────────────────────────────────────────────────────────
+function updateROI() {
+  const calls = parseInt(document.getElementById('slider-calls').value, 10);
+  const revenue = parseInt(document.getElementById('slider-revenue').value, 10);
+  const rate = parseInt(document.getElementById('slider-rate').value, 10);
+
+  document.getElementById('val-calls').textContent = calls;
+  document.getElementById('val-revenue').textContent = '€' + revenue.toLocaleString('en-IE');
+  document.getElementById('val-rate').textContent = rate + '%';
+
+  const result = Math.round(calls * revenue * (rate / 100));
+  document.getElementById('roi-result').textContent = '€' + result.toLocaleString('en-IE');
+}
+
+document.addEventListener('DOMContentLoaded', updateROI);
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TOPBAR SCROLL
+// ─────────────────────────────────────────────────────────────────────────────
+window.addEventListener('scroll', function () {
   document.querySelector('.topbar').classList.toggle('scrolled', window.scrollY > 50);
 });
 
+// ─────────────────────────────────────────────────────────────────────────────
+// SAVE FOR LATER
+// ─────────────────────────────────────────────────────────────────────────────
 function addToGoogleCal(e) {
   e.preventDefault();
-  const now = new Date();
-  const remind = new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000);
-  const end = new Date(remind.getTime() + 30 * 60 * 1000);
-  const fmt = d => d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
-  const pageUrl = window.location.href || 'https://aimoco.space';
-  const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('Review: AIMoCo AI Receptionist')}&dates=${fmt(remind)}/${fmt(end)}&details=${encodeURIComponent('Take another look at the AI Receptionist for your business.\n\n' + pageUrl)}&sf=true`;
+  var now = new Date();
+  var remind = new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000);
+  var end = new Date(remind.getTime() + 30 * 60 * 1000);
+  var fmt = function(d) { return d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z'; };
+  var pageUrl = window.location.href;
+  var url = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent('Review: AIMoCo AI Receptionist') + '&dates=' + fmt(remind) + '/' + fmt(end) + '&details=' + encodeURIComponent('Take another look at the AI Receptionist for your firm.\n\n' + pageUrl) + '&sf=true';
   window.open(url, '_blank');
 }
 
 function downloadICS(e) {
   e.preventDefault();
-  const now = new Date();
-  const remind = new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000);
-  const end = new Date(remind.getTime() + 30 * 60 * 1000);
-  const fmt = d => d.toISOString().replace(/[-:\.]/g, '').substring(0, 15) + 'Z';
-  const pageUrl = window.location.href || 'https://aimoco.space';
-  const ics = `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nDTSTART:${fmt(remind)}\nDTEND:${fmt(end)}\nSUMMARY:Review: AIMoCo AI Receptionist\nDESCRIPTION:Take another look at the AI Receptionist for your business.\\n\\n${pageUrl}\nEND:VEVENT\nEND:VCALENDAR`;
-  const blob = new Blob([ics], { type: 'text/calendar' });
-  const a = document.createElement('a');
+  var now = new Date();
+  var remind = new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000);
+  var end = new Date(remind.getTime() + 30 * 60 * 1000);
+  var fmt = function(d) { return d.toISOString().replace(/[-:\.]/g, '').substring(0, 15) + 'Z'; };
+  var pageUrl = window.location.href;
+  var ics = 'BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nDTSTART:' + fmt(remind) + '\nDTEND:' + fmt(end) + '\nSUMMARY:Review: AIMoCo AI Receptionist\nDESCRIPTION:Take another look at the AI Receptionist for your firm.\\n\\n' + pageUrl + '\nEND:VEVENT\nEND:VCALENDAR';
+  var blob = new Blob([ics], { type: 'text/calendar' });
+  var a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
   a.download = 'aimoco-ai-receptionist.ics';
   a.click();
@@ -820,14 +1086,13 @@ function downloadICS(e) {
 
 function copyLink(e) {
   e.preventDefault();
-  const url = window.location.href || 'https://aimoco.space';
-  navigator.clipboard.writeText(url).then(() => {
-    const btn = e.currentTarget;
-    const orig = btn.innerHTML;
+  navigator.clipboard.writeText(window.location.href).then(function() {
+    var btn = e.currentTarget;
+    var orig = btn.innerHTML;
     btn.innerHTML = '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
     btn.style.borderColor = 'var(--gold)';
     btn.style.color = 'var(--gold)';
-    setTimeout(() => { btn.innerHTML = orig; btn.style.borderColor = ''; btn.style.color = ''; }, 2000);
+    setTimeout(function() { btn.innerHTML = orig; btn.style.borderColor = ''; btn.style.color = ''; }, 2000);
   });
 }
 </script>
