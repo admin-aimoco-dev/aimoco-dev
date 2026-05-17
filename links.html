@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIMoCo — Page Links</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@0,400;0,600&family=DM+Sans:wght@0,300;0,400;0,500;0,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0C1A2A;
+  --navy-deep: #071320;
+  --navy-mid: #112640;
+  --navy-surface: #16304D;
+  --gold: #C8A55A;
+  --gold-light: #DBBF78;
+  --gold-glow: rgba(200,165,90,0.10);
+  --text: #9AACBE;
+  --text-bright: #D0D8E2;
+  --text-heading: #EAE6E0;
+  --green: #4ADE80;
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'DM Sans', -apple-system, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 16px; }
+body {
+  font-family: var(--sans);
+  background: var(--navy-deep);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 3rem 2rem 5rem;
+}
+
+/* HEADER */
+.header {
+  display: flex; align-items: flex-start;
+  justify-content: space-between;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(200,165,90,0.1);
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap; gap: 1rem;
+}
+.header-left h1 {
+  font-family: var(--serif);
+  font-size: 1.6rem; color: var(--gold);
+  font-weight: 600; margin-bottom: 0.3rem;
+}
+.header-left p {
+  font-size: 0.82rem; color: var(--text); font-weight: 300;
+}
+.header-badge {
+  font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text); background: var(--navy-mid);
+  border: 1px solid rgba(200,165,90,0.1);
+  padding: 0.35rem 0.9rem; font-weight: 400;
+  white-space: nowrap; align-self: center;
+}
+
+/* SECTION LABEL */
+.section-label {
+  font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold); font-weight: 500;
+  margin-bottom: 0.8rem; margin-top: 2.5rem;
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.section-label::after {
+  content: '';
+  flex: 1; height: 1px;
+  background: rgba(200,165,90,0.1);
+}
+
+/* LINK CARDS */
+.link-card {
+  background: var(--navy);
+  border: 1px solid rgba(200,165,90,0.08);
+  padding: 1.4rem 1.6rem;
+  margin-bottom: 0.8rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.2rem;
+  align-items: center;
+  transition: border-color 0.3s;
+}
+.link-card:hover { border-color: rgba(200,165,90,0.18); }
+.link-card.placeholder {
+  opacity: 0.45;
+  border-style: dashed;
+}
+.link-card.placeholder:hover { border-color: rgba(200,165,90,0.15); }
+
+.link-info h3 {
+  font-size: 0.95rem; color: var(--text-heading);
+  font-weight: 500; margin-bottom: 0.25rem;
+}
+.link-info p {
+  font-size: 0.8rem; color: var(--text); font-weight: 300;
+  line-height: 1.5; margin-bottom: 0.5rem;
+}
+.link-url {
+  font-size: 0.75rem; color: var(--gold);
+  font-family: monospace; word-break: break-all;
+  opacity: 0.8;
+}
+.link-card.placeholder .link-url {
+  color: var(--text); opacity: 0.5;
+  font-style: italic;
+}
+
+.link-actions {
+  display: flex; flex-direction: column; gap: 0.5rem;
+  flex-shrink: 0;
+}
+.btn-copy {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid rgba(200,165,90,0.25);
+  color: var(--gold); font-family: var(--sans);
+  font-size: 0.72rem; font-weight: 500;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  cursor: pointer; transition: all 0.25s; white-space: nowrap;
+}
+.btn-copy:hover { background: var(--gold-glow); border-color: var(--gold); }
+.btn-copy svg { width: 13px; height: 13px; flex-shrink: 0; }
+.btn-copy.copied {
+  background: rgba(74,222,128,0.1);
+  border-color: rgba(74,222,128,0.4);
+  color: var(--green);
+}
+
+.btn-open {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  background: var(--gold); color: var(--navy);
+  border: none; font-family: var(--sans);
+  font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  cursor: pointer; transition: all 0.25s;
+  text-decoration: none; white-space: nowrap;
+}
+.btn-open:hover { background: var(--gold-light); }
+.btn-open svg { width: 13px; height: 13px; }
+
+.link-card.placeholder .btn-copy,
+.link-card.placeholder .btn-open {
+  pointer-events: none; opacity: 0.4;
+}
+
+/* AUDIENCE TAG */
+.audience-tag {
+  display: inline-block;
+  font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid rgba(200,165,90,0.2);
+  color: var(--gold); font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+/* STATUS */
+.status-dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%; margin-right: 0.4rem;
+  vertical-align: middle;
+}
+.status-dot.live { background: var(--green); }
+.status-dot.soon { background: rgba(200,165,90,0.5); }
+
+/* FOOTER NOTE */
+.footer-note {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(200,165,90,0.07);
+  font-size: 0.78rem; color: var(--text); font-weight: 300;
+  line-height: 1.7;
+}
+.footer-note strong { color: var(--text-bright); font-weight: 500; }
+
+@media (max-width: 600px) {
+  .link-card { grid-template-columns: 1fr; }
+  .link-actions { flex-direction: row; }
+  .header { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <h1>AIMoCo — Page Links</h1>
+      <p>Internal reference. All landing page versions in one place.</p>
+    </div>
+    <div class="header-badge">Internal Use Only</div>
+  </div>
+
+  <!-- LIVE PAGES -->
+  <div class="section-label">Live Pages</div>
+
+  <!-- GENERAL -->
+  <div class="link-card" id="card-general">
+    <div class="link-info">
+      <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:0.4rem;">
+        <div class="audience-tag">General</div>
+        <span style="font-size:0.72rem;color:var(--text);"><span class="status-dot live"></span>Live</span>
+      </div>
+      <h3>AI Receptionist — General</h3>
+      <p>Non-industry-specific version. Use this for broad outreach, social media, or when the audience isn't a specific vertical.</p>
+      <div class="link-url" id="url-general">https://admin-aimoco-dev.github.io/aimoco-dev/?industry=general</div>
+    </div>
+    <div class="link-actions">
+      <button class="btn-copy" onclick="copyUrl('url-general', this)">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        Copy Link
+      </button>
+      <a class="btn-open" href="https://admin-aimoco-dev.github.io/aimoco-dev/?industry=general" target="_blank">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Open
+      </a>
+    </div>
+  </div>
+
+  <!-- LAW FIRM -->
+  <div class="link-card" id="card-law">
+    <div class="link-info">
+      <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:0.4rem;">
+        <div class="audience-tag">Law Firms</div>
+        <span style="font-size:0.72rem;color:var(--text);"><span class="status-dot live"></span>Live</span>
+      </div>
+      <h3>AI Receptionist — Law Firms</h3>
+      <p>Targeted at solicitors and legal practices. Hero, copy, phone demo, and ROI calculator all use legal context. Use when prospecting law firms.</p>
+      <div class="link-url" id="url-law">https://admin-aimoco-dev.github.io/aimoco-dev/?industry=law</div>
+    </div>
+    <div class="link-actions">
+      <button class="btn-copy" onclick="copyUrl('url-law', this)">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        Copy Link
+      </button>
+      <a class="btn-open" href="https://admin-aimoco-dev.github.io/aimoco-dev/?industry=law" target="_blank">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Open
+      </a>
+    </div>
+  </div>
+
+  <!-- COMING SOON -->
+  <div class="section-label">Coming Soon</div>
+
+  <!-- DENTAL -->
+  <div class="link-card placeholder">
+    <div class="link-info">
+      <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:0.4rem;">
+        <div class="audience-tag">Dental</div>
+        <span style="font-size:0.72rem;color:var(--text);"><span class="status-dot soon"></span>Not built yet</span>
+      </div>
+      <h3>AI Receptionist — Dental Practices</h3>
+      <p>Targeted at dental surgeries and private clinics. Add <code style="font-size:0.72rem;">dental</code> config to INDUSTRIES in index.html to activate.</p>
+      <div class="link-url">https://admin-aimoco-dev.github.io/aimoco-dev/?industry=dental</div>
+    </div>
+    <div class="link-actions">
+      <button class="btn-copy" disabled>
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        Copy Link
+      </button>
+      <a class="btn-open" href="#" onclick="return false;">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Open
+      </a>
+    </div>
+  </div>
+
+  <!-- ESTATE AGENTS -->
+  <div class="link-card placeholder">
+    <div class="link-info">
+      <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:0.4rem;">
+        <div class="audience-tag">Estate Agents</div>
+        <span style="font-size:0.72rem;color:var(--text);"><span class="status-dot soon"></span>Not built yet</span>
+      </div>
+      <h3>AI Receptionist — Estate Agents</h3>
+      <p>Targeted at property agencies. Add <code style="font-size:0.72rem;">realestate</code> config to INDUSTRIES in index.html to activate.</p>
+      <div class="link-url">https://admin-aimoco-dev.github.io/aimoco-dev/?industry=realestate</div>
+    </div>
+    <div class="link-actions">
+      <button class="btn-copy" disabled>
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        Copy Link
+      </button>
+      <a class="btn-open" href="#" onclick="return false;">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Open
+      </a>
+    </div>
+  </div>
+
+  <!-- FOOTER NOTE -->
+  <div class="footer-note">
+    <strong>How to add a new industry:</strong> Open <code>index.html</code>, find the <code>INDUSTRIES</code> object in the script, add a new key (e.g. <code>dental</code>) with <code>pageTitle</code>, <code>heroBadge</code>, <code>heroHeadline</code>, <code>heroSub</code>, and <code>vapiDemoUrl</code>. Then update this links page with the new entry. The URL <code>?industry=dental</code> will work immediately — no other changes needed.
+  </div>
+
+</div>
+
+<script>
+function copyUrl(id, btn) {
+  var url = document.getElementById(id).textContent.trim();
+  navigator.clipboard.writeText(url).then(function() {
+    var orig = btn.innerHTML;
+    btn.innerHTML = '<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="13" height="13"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.innerHTML = orig;
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+</script>
+</body>
+</html>
