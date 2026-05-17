@@ -988,6 +988,13 @@ input[type="range"]::-moz-range-thumb {
 //   3. Navigate to ?industry=dental — everything swaps automatically
 // ─────────────────────────────────────────────────────────────────────────────
 const INDUSTRIES = {
+  general: {
+    pageTitle: 'AI Receptionist — AIMoCo',
+    heroBadge: 'AI-Powered Call Handling',
+    heroHeadline: 'Your phone answered.<br><em>Every call.</em> Every time.',
+    heroSub: 'An AI receptionist that picks up your business calls, handles enquiries, and books appointments straight into your calendar — 24 hours a day, no staff needed.',
+    vapiDemoUrl: 'https://vapi.ai/demo/PLACEHOLDER_GENERAL', // REPLACE WITH REAL VAPI DEMO LINK
+  },
   law: {
     pageTitle: 'AI Receptionist for Law Firms — AIMoCo',
     heroBadge: 'AI Receptionist for Law Firms',
@@ -1018,7 +1025,7 @@ const INDUSTRIES = {
 // ─────────────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', function () {
   const params = new URLSearchParams(window.location.search);
-  const industry = params.get('industry') || 'law';
+  const industry = params.get('industry') || 'general';
   const config = INDUSTRIES[industry] || INDUSTRIES['law'];
 
   document.getElementById('page-title').textContent = config.pageTitle;
