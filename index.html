@@ -289,19 +289,65 @@ section { padding: 6rem 0; position: relative; }
 /* ── DEMO SECTION ── */
 .demo-section { background: var(--navy); padding: 5rem 0; text-align: center; }
 .demo-section .container { max-width: 700px; }
-.demo-btn-wrap { margin: 2.5rem 0 1.8rem; }
-.demo-btn {
-  display: inline-flex; align-items: center; gap: 0.75rem;
-  padding: 1rem 2.5rem; background: var(--gold); color: var(--navy);
-  font-family: var(--sans); font-size: 0.9rem; font-weight: 600;
-  letter-spacing: 0.05em; text-transform: uppercase;
-  border: none; cursor: pointer; transition: all 0.3s; text-decoration: none;
+.demo-btn-wrap {
+  margin: 2.5rem 0 1.8rem;
+  display: flex; justify-content: center;
 }
-.demo-btn:hover { background: var(--gold-light); color: var(--navy); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(200,165,90,0.2); }
-.demo-btn svg { width: 20px; height: 20px; }
-.demo-live-dot {
-  width: 9px; height: 9px; background: var(--navy);
-  border-radius: 50%; animation: pulse 1.5s ease infinite; flex-shrink: 0;
+.demo-btn-wrap #vapi-support-btn {
+  position: static !important;
+  top: auto !important; right: auto !important;
+  bottom: auto !important; left: auto !important;
+  margin: 0 !important;
+  width: auto !important; min-width: 0 !important; height: auto !important;
+  font-family: var(--sans) !important;
+  padding: 1rem 2.5rem !important;
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s !important;
+  animation: none !important;
+}
+.demo-btn-wrap .vapi-btn-pill {
+  border-radius: 0 !important;
+  background: var(--gold) !important;
+  color: var(--navy) !important;
+  box-shadow: none !important;
+}
+.demo-btn-wrap .vapi-btn-pill.vapi-btn-is-loading {
+  background: var(--gold-light) !important;
+}
+.demo-btn-wrap .vapi-btn-pill.vapi-btn-is-active {
+  background: var(--navy) !important;
+  color: var(--gold) !important;
+}
+.demo-btn-wrap .vapi-btn-pill:hover {
+  background: var(--gold-light) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(200,165,90,0.2) !important;
+}
+.demo-btn-wrap .vapi-btn-pill.vapi-btn-is-active:hover {
+  background: var(--navy-mid) !important;
+}
+.demo-btn-wrap .vapi-btn-pill > #vapi-icon-container {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 0.75rem 0 0 !important;
+  border-radius: 0 !important;
+}
+.demo-btn-wrap #vapi-title {
+  font-size: 0.9rem !important; font-weight: 600 !important;
+  letter-spacing: 0.05em !important; text-transform: uppercase !important;
+  color: var(--navy) !important;
+}
+.demo-btn-wrap .vapi-btn-pill.vapi-btn-is-active #vapi-title {
+  color: var(--gold) !important;
+}
+.demo-btn-wrap #vapi-subtitle { display: none !important; }
+.demo-btn-wrap #vapi-icon-container img {
+  filter: brightness(0) !important;
+  width: 20px !important;
+  height: 20px !important;
+}
+.demo-btn-wrap .vapi-btn-pill.vapi-btn-is-active #vapi-icon-container img {
+  filter: brightness(0) invert(1) !important;
 }
 .demo-disclaimer {
   font-size: 0.82rem; color: var(--text); line-height: 1.75;
@@ -664,13 +710,8 @@ input[type="range"]::-moz-range-thumb {
     <div class="section-badge">Live Demo</div>
     <h2 class="section-title">Hear how it sounds — live</h2>
     <p class="section-sub" style="margin: 0 auto;">Click below to speak with our AI Receptionist demo. Go ahead — ask it to book you in, ask about the firm's services, or just see how naturally it handles a real call.</p>
-    <div class="demo-btn-wrap">
-      <!-- URL is set from the INDUSTRIES config in JS below. REPLACE vapiDemoUrl with real VAPI link when ready. -->
-      <a href="#" id="demo-link" target="_blank" rel="noopener" class="demo-btn">
-        <span class="demo-live-dot"></span>
-        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-        Call the Demo
-      </a>
+    <div class="demo-btn-wrap" id="demo-btn-mount" aria-live="polite">
+      <!-- VAPI call button is injected here by initVapiDemo() -->
     </div>
     <p class="demo-disclaimer">This is a demo environment — the voice, firm name, and responses are generic placeholders. Every AI Receptionist we build is fully customised to your firm: your name, your practice areas, your tone of voice, your availability, and your booking process.</p>
   </div>
@@ -984,9 +1025,11 @@ input[type="range"]::-moz-range-thumb {
 // INDUSTRY CONFIG
 // To add a new industry (e.g. dental, realestate):
 //   1. Add a new key to INDUSTRIES with all required fields
-//   2. Set vapiDemoUrl to the correct VAPI demo link for that industry
+//   2. Set vapiAssistantId to that industry's VAPI assistant ID
 //   3. Navigate to ?industry=dental — everything swaps automatically
 // ─────────────────────────────────────────────────────────────────────────────
+const VAPI_PUBLIC_API_KEY = '70f1ed62-b100-4455-a8fd-9a9c0f5c09ea'; // REPLACE with your Public key from Vapi Dashboard
+
 const INDUSTRIES = {
   general: {
     pageTitle: 'AI Receptionist — AIMoCo',
@@ -1000,7 +1043,7 @@ const INDUSTRIES = {
     heroBadge: 'AI Receptionist for Law Firms',
     heroHeadline: '<em>Never miss</em> a client call again.',
     heroSub: 'Every missed call from a prospective client is revenue walking out the door. Our AI Receptionist answers every call, handles client intake, books consultations directly into your calendar, and keeps your practice accessible around the clock — with no additional staff.',
-    vapiDemoUrl: 'https://vapi.ai/demo/PLACEHOLDER_LAW', // REPLACE WITH REAL VAPI DEMO LINK FOR LAW
+    vapiAssistantId: 'ac75716a-1963-4800-9977-2c7bda9df9c0', // REPLACE with your assistant ID for law
   },
 
   // ── Add future industries below — zero logic changes needed ──────────────
@@ -1009,14 +1052,14 @@ const INDUSTRIES = {
   //   heroBadge: 'AI Receptionist for Dental Practices',
   //   heroHeadline: '<em>Every patient call</em> answered.',
   //   heroSub: '...',
-  //   vapiDemoUrl: 'https://vapi.ai/demo/PLACEHOLDER_DENTAL', // REPLACE
+  //   vapiAssistantId: '<assistant_id>', // REPLACE
   // },
   // realestate: {
   //   pageTitle: 'AI Receptionist for Estate Agents — AIMoCo',
   //   heroBadge: 'AI Receptionist for Estate Agents',
   //   heroHeadline: 'Never lose a <em>viewing request</em> again.',
   //   heroSub: '...',
-  //   vapiDemoUrl: 'https://vapi.ai/demo/PLACEHOLDER_REALESTATE', // REPLACE
+  //   vapiAssistantId: '<assistant_id>', // REPLACE
   // },
 };
 
@@ -1033,9 +1076,81 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('hero-headline').innerHTML = config.heroHeadline;
   document.getElementById('hero-sub').textContent = config.heroSub;
 
-  const demoLink = document.getElementById('demo-link');
-  if (demoLink) demoLink.href = config.vapiDemoUrl;
+  initVapiDemo(config.vapiAssistantId);
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// VAPI LIVE DEMO
+// ─────────────────────────────────────────────────────────────────────────────
+var vapiInstance = null;
+
+const VAPI_BUTTON_CONFIG = {
+  position: 'bottom',
+  offset: '0',
+  width: '240px',
+  height: '52px',
+  idle: {
+    color: 'rgb(200, 165, 90)',
+    type: 'pill',
+    title: 'Call the Demo',
+    subtitle: 'Speak with our AI Receptionist',
+    icon: 'https://unpkg.com/lucide-static@0.321.0/icons/phone.svg',
+  },
+  loading: {
+    color: 'rgb(219, 191, 120)',
+    type: 'pill',
+    title: 'Connecting...',
+    subtitle: 'Please wait',
+    icon: 'https://unpkg.com/lucide-static@0.321.0/icons/loader-2.svg',
+  },
+  active: {
+    color: 'rgb(12, 26, 42)',
+    type: 'pill',
+    title: 'End call',
+    subtitle: 'Tap to hang up',
+    icon: 'https://unpkg.com/lucide-static@0.321.0/icons/phone-off.svg',
+  },
+};
+
+function mountVapiButton() {
+  var btn = document.getElementById('vapi-support-btn');
+  var mount = document.getElementById('demo-btn-mount');
+  if (btn && mount && btn.parentNode !== mount) mount.appendChild(btn);
+}
+
+function initVapiDemo(assistantId) {
+  if (!assistantId || assistantId.indexOf('<') !== -1) return;
+  if (!VAPI_PUBLIC_API_KEY || VAPI_PUBLIC_API_KEY.indexOf('<') !== -1) return;
+
+  function startVapi() {
+    if (!window.vapiSDK) return;
+    vapiInstance = window.vapiSDK.run({
+      apiKey: VAPI_PUBLIC_API_KEY,
+      assistant: assistantId,
+      config: VAPI_BUTTON_CONFIG,
+    });
+    mountVapiButton();
+  }
+
+  if (window.vapiSDK) {
+    startVapi();
+    return;
+  }
+
+  var existing = document.querySelector('script[data-vapi-sdk]');
+  if (existing) {
+    existing.addEventListener('load', startVapi);
+    return;
+  }
+
+  var script = document.createElement('script');
+  script.src = 'https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js';
+  script.defer = true;
+  script.async = true;
+  script.setAttribute('data-vapi-sdk', 'true');
+  script.onload = startVapi;
+  document.body.appendChild(script);
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // ROI CALCULATOR
