@@ -349,10 +349,27 @@ section { padding: 6rem 0; position: relative; }
 .demo-btn-wrap .vapi-btn-pill.vapi-btn-is-active #vapi-icon-container img {
   filter: brightness(0) invert(1) !important;
 }
+/* law-firm example note, sits between the demo button and the disclaimer */
+.demo-industry-note {
+  font-size: 0.85rem; color: var(--gold);
+  letter-spacing: 0.02em; line-height: 1.6;
+  max-width: 560px; margin: 0 auto 1.8rem;
+}
 .demo-disclaimer {
-  font-size: 0.82rem; color: var(--text); line-height: 1.75;
-  font-weight: 300; max-width: 560px; margin: 0 auto;
-  border-top: 1px solid rgba(200,165,90,0.08); padding-top: 1.5rem;
+  max-width: 640px; margin: 0 auto;
+  border-top: 1px solid rgba(200,165,90,0.08); padding-top: 1.6rem;
+}
+/* the small caveat stays quiet */
+.demo-disclaimer-caveat {
+  font-size: 0.8rem; color: var(--text); line-height: 1.7;
+  font-weight: 300; opacity: 0.75; margin-bottom: 1.1rem;
+}
+/* the promise is the standout line: bigger, italic, bright, bold, wider */
+.demo-disclaimer-promise {
+  font-family: var(--serif); font-style: italic; font-weight: 700;
+  color: var(--text-heading);
+  font-size: 1.25rem; line-height: 1.55;
+  max-width: 600px; margin: 0 auto;
 }
 
 /* ── FEATURES ── */
@@ -713,7 +730,12 @@ input[type="range"]::-moz-range-thumb {
     <div class="demo-btn-wrap" id="demo-btn-mount" aria-live="polite">
       <!-- VAPI call button is injected here by initVapiDemo() -->
     </div>
-    <p class="demo-disclaimer">This is a demo environment — the voice, firm name, and responses are generic placeholders. Every AI Receptionist we build is fully customised to your firm: your name, your practice areas, your tone of voice, your availability, and your booking process.</p>
+    <!-- Industry-specific demo note; text is set per industry in the init handler (default below is the law-firm copy) -->
+    <p class="demo-industry-note" id="demo-note">Heads up: this demo is set up as a law firm, so it answers as a sample practice. Your own AI Receptionist would be voiced and scripted for your business.</p>
+    <div class="demo-disclaimer">
+      <p class="demo-disclaimer-caveat">This is a demo environment. The voice, firm name, and responses are generic placeholders.</p>
+      <p class="demo-disclaimer-promise">Every AI Receptionist we build is fully customised to your firm: your name, your practice areas, your tone of voice, your availability, and your booking process.</p>
+    </div>
   </div>
 </section>
 
@@ -1037,6 +1059,7 @@ const INDUSTRIES = {
     heroBadge: 'AI-Powered Call Handling',
     heroHeadline: 'Your phone answered.<br><em>Every call.</em> Every time.',
     heroSub: 'An AI receptionist that picks up your business calls, handles enquiries, and books appointments straight into your calendar — 24 hours a day, no staff needed.',
+    demoNote: 'Heads up: this demo currently uses our law-firm sample voice, so it answers as a law practice. Your own AI Receptionist would be voiced and scripted for your business.',
     vapiAssistantId: 'ac75716a-1963-4800-9977-2c7bda9df9c0', // REPLACE with a general-demo assistant ID when ready
   },
   law: {
@@ -1044,6 +1067,7 @@ const INDUSTRIES = {
     heroBadge: 'AI Receptionist for Law Firms',
     heroHeadline: '<em>Never miss</em> a client call again.',
     heroSub: 'Every missed call from a prospective client is revenue walking out the door. Our AI Receptionist answers every call, handles client intake, books consultations directly into your calendar, and keeps your practice accessible around the clock — with no additional staff.',
+    demoNote: 'Heads up: this demo is set up as a law firm, so it answers as a sample practice. Your own AI Receptionist would be voiced and scripted for your business.',
     vapiAssistantId: 'ac75716a-1963-4800-9977-2c7bda9df9c0', // REPLACE with your assistant ID for law
   },
 
@@ -1053,6 +1077,7 @@ const INDUSTRIES = {
   //   heroBadge: 'AI Receptionist for Dental Practices',
   //   heroHeadline: '<em>Every patient call</em> answered.',
   //   heroSub: '...',
+  //   demoNote: '...', // update once this industry has its own vapiAssistantId
   //   vapiAssistantId: '<assistant_id>', // REPLACE
   // },
   // realestate: {
@@ -1060,6 +1085,7 @@ const INDUSTRIES = {
   //   heroBadge: 'AI Receptionist for Estate Agents',
   //   heroHeadline: 'Never lose a <em>viewing request</em> again.',
   //   heroSub: '...',
+  //   demoNote: '...', // update once this industry has its own vapiAssistantId
   //   vapiAssistantId: '<assistant_id>', // REPLACE
   // },
 };
@@ -1076,6 +1102,9 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('hero-badge').textContent = config.heroBadge;
   document.getElementById('hero-headline').innerHTML = config.heroHeadline;
   document.getElementById('hero-sub').textContent = config.heroSub;
+
+  const demoNoteEl = document.getElementById('demo-note');
+  if (demoNoteEl && config.demoNote) demoNoteEl.textContent = config.demoNote;
 
   initVapiDemo(config.vapiAssistantId || VAPI_ASSISTANT_DEFAULT);
 });
