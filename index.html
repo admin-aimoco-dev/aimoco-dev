@@ -340,7 +340,16 @@ section { padding: 6rem 0; position: relative; }
 .demo-btn-wrap .vapi-btn-pill.vapi-btn-is-active #vapi-title {
   color: var(--gold) !important;
 }
-.demo-btn-wrap #vapi-subtitle { display: none !important; }
+.demo-btn-wrap #vapi-subtitle {
+  display: block !important;
+  font-size: 0.6rem !important; font-weight: 600 !important;
+  letter-spacing: 0.06em !important; text-transform: none !important;
+  color: var(--navy) !important; opacity: 0.7 !important;
+  margin-top: 3px !important;
+}
+.demo-btn-wrap .vapi-btn-pill.vapi-btn-is-active #vapi-subtitle {
+  color: var(--gold) !important; opacity: 0.85 !important;
+}
 .demo-btn-wrap #vapi-icon-container img {
   filter: brightness(0) !important;
   width: 20px !important;
@@ -1060,6 +1069,7 @@ const INDUSTRIES = {
     heroHeadline: 'Your phone answered.<br><em>Every call.</em> Every time.',
     heroSub: 'An AI receptionist that picks up your business calls, handles enquiries, and books appointments straight into your calendar — 24 hours a day, no staff needed.',
     demoNote: 'Heads up: this demo currently uses our law-firm sample voice, so it answers as a law practice. Your own AI Receptionist would be voiced and scripted for your business.',
+    demoButtonSubtitle: 'Talk to AIMoCo Law firm',
     vapiAssistantId: 'ac75716a-1963-4800-9977-2c7bda9df9c0', // REPLACE with a general-demo assistant ID when ready
   },
   law: {
@@ -1068,6 +1078,7 @@ const INDUSTRIES = {
     heroHeadline: '<em>Never miss</em> a client call again.',
     heroSub: 'Every missed call from a prospective client is revenue walking out the door. Our AI Receptionist answers every call, handles client intake, books consultations directly into your calendar, and keeps your practice accessible around the clock — with no additional staff.',
     demoNote: 'Heads up: this demo is set up as a law firm, so it answers as a sample practice. Your own AI Receptionist would be voiced and scripted for your business.',
+    demoButtonSubtitle: 'Talk to AIMoCo Law firm',
     vapiAssistantId: 'ac75716a-1963-4800-9977-2c7bda9df9c0', // REPLACE with your assistant ID for law
   },
 
@@ -1078,6 +1089,7 @@ const INDUSTRIES = {
   //   heroHeadline: '<em>Every patient call</em> answered.',
   //   heroSub: '...',
   //   demoNote: '...', // update once this industry has its own vapiAssistantId
+  //   demoButtonSubtitle: 'Talk to AIMoCo ...', // small line shown on the demo button
   //   vapiAssistantId: '<assistant_id>', // REPLACE
   // },
   // realestate: {
@@ -1086,6 +1098,7 @@ const INDUSTRIES = {
   //   heroHeadline: 'Never lose a <em>viewing request</em> again.',
   //   heroSub: '...',
   //   demoNote: '...', // update once this industry has its own vapiAssistantId
+  //   demoButtonSubtitle: 'Talk to AIMoCo ...', // small line shown on the demo button
   //   vapiAssistantId: '<assistant_id>', // REPLACE
   // },
 };
@@ -1105,6 +1118,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const demoNoteEl = document.getElementById('demo-note');
   if (demoNoteEl && config.demoNote) demoNoteEl.textContent = config.demoNote;
+
+  // small line shown on the demo button itself (set before the SDK reads the config)
+  if (config.demoButtonSubtitle) VAPI_BUTTON_CONFIG.idle.subtitle = config.demoButtonSubtitle;
 
   initVapiDemo(config.vapiAssistantId || VAPI_ASSISTANT_DEFAULT);
 });
